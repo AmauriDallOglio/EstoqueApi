@@ -1,12 +1,18 @@
+using EstoqueApi.Infra.Context;
+using EstoqueApi.Infra.Repositorio;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
+var configuration = new ConfigurationBuilder()
+	.SetBasePath(builder.Environment.ContentRootPath)
+	.AddJsonFile("appsettings.Development.json")
+	.Build();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -18,11 +24,13 @@ builder.Services.AddControllers().AddNewtonsoftJson(opt =>
 
 builder.Services.AddControllers();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
-builder.Services.AddDbContextPool<DbContext, PrateleiraDbContext>(options =>
+
+
+builder.Services.AddDbContextPool<DbContext, MeuContext>(options =>
 {
 	options.UseSqlServer(configuration.GetConnectionString("sql_connection"));
 });
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped(typeof(IRepositorioGenerico<>), typeof(RepositorioGenerico<>));
 
 
 builder.Services.AddSwaggerGen(c =>
@@ -81,7 +89,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
 
 app.MapControllers();
 

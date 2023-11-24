@@ -15,4 +15,8 @@
     <ProjectReference Include="..\EstoqueApi.Dominio\EstoqueApi.Dominio.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Modelo\" />
+  </ItemGroup>
+
 </Project>
