@@ -1,3 +1,9 @@
+using EstoqueApi.Aplicacao.Negocio.Categoria.Command;
+using EstoqueApi.Aplicacao.Negocio.Categoria.Handler;
+using EstoqueApi.Aplicacao.Negocio.Categoria.Query;
+using EstoqueApi.Aplicacao.Negocio.Produto.Handler;
+using EstoqueApi.Aplicacao.Negocio.Produto.Query;
+using EstoqueApi.Dominio.Entidade;
 using EstoqueApi.Infra.Context;
 using EstoqueApi.Infra.Repositorio;
 using MediatR;
@@ -15,7 +21,6 @@ var configuration = new ConfigurationBuilder()
 
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -24,6 +29,13 @@ builder.Services.AddControllers().AddNewtonsoftJson(opt =>
 
 builder.Services.AddControllers();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+
+ 
+
+builder.Services.AddTransient<IRequestHandler<CreateCategoryCommand, bool>, CreateCategoryCommandHandler>();
+builder.Services.AddTransient<IRequestHandler<GetAllCategoriesQuery, IEnumerable<Categoria>>, GetAllCategoryQueryHandler>();
+builder.Services.AddTransient<IRequestHandler<GetAllProductQuery, IEnumerable<Produto>>, GetAllProductQueryHandler>();
+
 
 
 builder.Services.AddDbContextPool<DbContext, MeuContext>(options =>
