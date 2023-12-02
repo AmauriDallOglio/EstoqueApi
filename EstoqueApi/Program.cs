@@ -1,8 +1,5 @@
-using EstoqueApi.Aplicacao.Negocio.Categoria.Command;
+using EstoqueApi.Aplicacao.Negocio;
 using EstoqueApi.Aplicacao.Negocio.Categoria.Handler;
-using EstoqueApi.Aplicacao.Negocio.Categoria.Query;
-using EstoqueApi.Aplicacao.Negocio.Produto.Handler;
-using EstoqueApi.Aplicacao.Negocio.Produto.Query;
 using EstoqueApi.Dominio.Entidade;
 using EstoqueApi.Infra.Context;
 using EstoqueApi.Infra.Repositorio;

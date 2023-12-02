@@ -1,13 +1,12 @@
-﻿using EstoqueApi.Aplicacao.Negocio.Produto.Command;
-using EstoqueApi.Aplicacao.Negocio.Produto.Query;
+﻿using EstoqueApi.Aplicacao.Negocio;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EstoqueApi.Controllers
 {
-	[ApiController]
+    [ApiController]
 	[Route("api/[controller]")]
-	public class ProdutoController : Controller
+	public class ProdutoController : ControllerBase
 	{
 		private readonly IMediator _mediator;
 
@@ -19,7 +18,8 @@ namespace EstoqueApi.Controllers
 		[HttpGet]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status200OK)]
-		public async Task<IActionResult> Obter(CancellationToken cancellationToken)
+        [HttpGet("ObterProduto"), ActionName("ObterProduto")]
+        public async Task<IActionResult> Obter(CancellationToken cancellationToken)
 		{
 			var produtos = await _mediator.Send(new GetAllProductQuery(), cancellationToken)
 				.ConfigureAwait(false);
@@ -29,7 +29,8 @@ namespace EstoqueApi.Controllers
 		[HttpPost]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<IActionResult> Create(CreateProductCommand createCommand,
+        [HttpGet("Create"), ActionName("Create")]
+        public async Task<IActionResult> Create(CreateProductCommand createCommand,
 			CancellationToken cancellationToken)
 		{
 
@@ -45,7 +46,8 @@ namespace EstoqueApi.Controllers
 		[HttpPut]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<IActionResult> Update(UpdateProductCommand updateCommand, CancellationToken cancellationToken)
+        [HttpGet("Update"), ActionName("Update")]
+        public async Task<IActionResult> Update(UpdateProductCommand updateCommand, CancellationToken cancellationToken)
 		{
 			var sucesso = await _mediator.Send(updateCommand, cancellationToken).ConfigureAwait(false);
 			return sucesso ? Ok(true) : BadRequest();

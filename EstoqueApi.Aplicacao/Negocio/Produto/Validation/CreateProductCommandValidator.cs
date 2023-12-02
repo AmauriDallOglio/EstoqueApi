@@ -1,9 +1,8 @@
-﻿using EstoqueApi.Aplicacao.Negocio.Produto.Command;
-using FluentValidation;
+﻿using FluentValidation;
 
-namespace EstoqueApi.Aplicacao.Negocio.Produto.Validation
+namespace EstoqueApi.Aplicacao.Negocio
 {
-	internal class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
+    internal class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
 	{
 		public CreateProductCommandValidator()
 		{

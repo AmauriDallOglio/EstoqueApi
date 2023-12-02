@@ -1,10 +1,9 @@
-﻿using EstoqueApi.Aplicacao.Negocio.Produto.Query;
-using EstoqueApi.Infra.Repositorio;
+﻿using EstoqueApi.Infra.Repositorio;
 using MediatR;
 
-namespace EstoqueApi.Aplicacao.Negocio.Produto.Handler
+namespace EstoqueApi.Aplicacao.Negocio
 {
-	public class GetAllProductQueryHandler : IRequestHandler<GetAllProductQuery, IEnumerable<Dominio.Entidade.Produto>>
+    public class GetAllProductQueryHandler : IRequestHandler<GetAllProductQuery, IEnumerable<Dominio.Entidade.Produto>>
     {
         private readonly IRepositorioGenerico<Dominio.Entidade.Produto> _produtoRepository;
 

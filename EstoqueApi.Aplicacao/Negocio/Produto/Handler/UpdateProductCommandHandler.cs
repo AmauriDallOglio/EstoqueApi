@@ -1,10 +1,9 @@
-﻿using EstoqueApi.Aplicacao.Negocio.Produto.Command;
-using EstoqueApi.Infra.Repositorio;
+﻿using EstoqueApi.Infra.Repositorio;
 using MediatR;
 
-namespace EstoqueApi.Aplicacao.Negocio.Produto.Handler
+namespace EstoqueApi.Aplicacao.Negocio
 {
-	public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, bool>
+    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, bool>
 	{
 		private readonly IRepositorioGenerico<Dominio.Entidade.Produto> _genericRepository;
 		private readonly IRepositorioGenerico<Dominio.Entidade.Categoria> _categoiaRepository;

@@ -1,9 +1,8 @@
-﻿using EstoqueApi.Aplicacao.Negocio.Categoria.Command;
-using FluentValidation;
+﻿using FluentValidation;
 
-namespace EstoqueApi.Aplicacao.Negocio.Categoria.Validation
+namespace EstoqueApi.Aplicacao.Negocio
 {
-	public class CreateCategoryCommandValidator : AbstractValidator<CreateCategoryCommand>
+    public class CreateCategoryCommandValidator : AbstractValidator<CreateCategoryCommand>
 	{
 		public CreateCategoryCommandValidator()
 		{

@@ -1,12 +1,12 @@
-﻿using EstoqueApi.Aplicacao.Negocio.Produto.Command;
+﻿using EstoqueApi.Dominio.Entidade;
 using EstoqueApi.Infra.Repositorio;
 using MediatR;
 
-namespace EstoqueApi.Aplicacao.Negocio.Produto.Handler
+namespace EstoqueApi.Aplicacao.Negocio
 {
-	public class CreateProductHandler : IRequestHandler<CreateProductCommand, bool>
+    public class CreateProductHandler : IRequestHandler<CreateProductCommand, bool>
 	{
-		private readonly IRepositorioGenerico<Dominio.Entidade.Produto> _produtoRepository;
+		private readonly IRepositorioGenerico<Produto> _produtoRepository;
 		private readonly IRepositorioGenerico<Dominio.Entidade.Categoria> _categoiaRepository;
 
 		public CreateProductHandler(IRepositorioGenerico<Dominio.Entidade.Produto> produtoRepository,

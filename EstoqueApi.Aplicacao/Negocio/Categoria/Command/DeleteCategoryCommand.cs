@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace EstoqueApi.Aplicacao.Negocio.Categoria.Command
+namespace EstoqueApi.Aplicacao.Negocio
 {
 	public class DeleteCategoryCommand : IRequest<bool>
 	{

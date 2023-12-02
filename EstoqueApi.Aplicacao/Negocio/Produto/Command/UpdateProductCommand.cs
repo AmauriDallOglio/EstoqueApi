@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace EstoqueApi.Aplicacao.Negocio.Produto.Command
+namespace EstoqueApi.Aplicacao.Negocio
 {
 	public class UpdateProductCommand : IRequest<bool>
 	{

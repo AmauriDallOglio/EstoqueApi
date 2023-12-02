@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace EstoqueApi.Aplicacao.Negocio.Produto.Query
+namespace EstoqueApi.Aplicacao.Negocio
 {
 	public class GetAllProductQuery : IRequest<IEnumerable<Dominio.Entidade.Produto>>
 	{

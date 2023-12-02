@@ -1,11 +1,10 @@
-﻿using EstoqueApi.Aplicacao.Negocio.Categoria.Command;
-using EstoqueApi.Aplicacao.Negocio.Categoria.Query;
+﻿using EstoqueApi.Aplicacao.Negocio;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EstoqueApi.Controllers
 {
-	[ApiController]
+    [ApiController]
 	[Route("api/[controller]")]
 	public class CategoriaController : Controller
 	{
@@ -44,7 +43,7 @@ namespace EstoqueApi.Controllers
 		}
 
 		[HttpDelete]
-		[ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public async Task<IActionResult> Delete(DeleteCategoryCommand deleteCategoryCommand,
 			CancellationToken cancellationToken)

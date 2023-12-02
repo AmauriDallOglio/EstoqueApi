@@ -1,11 +1,10 @@
-﻿using EstoqueApi.Aplicacao.Negocio.Produto.Validation;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using MediatR;
 using System.Text.Json.Serialization;
 
-namespace EstoqueApi.Aplicacao.Negocio.Produto.Command
+namespace EstoqueApi.Aplicacao.Negocio
 {
-	public class CreateProductCommand : IRequest<bool>
+    public class CreateProductCommand : IRequest<bool>
 	{
 		private ValidationResult validation;
 		public CreateProductCommand(string descricao, int[] idCategorias)

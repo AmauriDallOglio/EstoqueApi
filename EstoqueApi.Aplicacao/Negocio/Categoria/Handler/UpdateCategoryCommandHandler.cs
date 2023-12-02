@@ -1,4 +1,4 @@
-﻿using EstoqueApi.Aplicacao.Negocio.Categoria.Command;
+﻿using EstoqueApi.Aplicacao.Negocio;
 using EstoqueApi.Infra.Repositorio;
 using MediatR;
 
