@@ -15,14 +15,15 @@ namespace EstoqueApi.Controllers
 			_mediator = mediator;
 		}
 
-		[HttpPost]
-		[ProducesResponseType(StatusCodes.Status200OK)]
-		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<IActionResult> Create(CreateCategoryCommand createCategoryCommand,
+
+        [HttpPost("Inserir"), ActionName("Inserir")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Create(CreateCategoryCommand createCategoryCommand,
 				   CancellationToken cancellationToken)
 		{
-			//if (createCategoryCommand.Validation.ErrorMessage != null)
-			//	return BadRequest(createCategoryCommand.Validation.ErrorMessage);
+			//if (createCategoryCommand.Validation.Errors != null)
+			//	return BadRequest(createCategoryCommand.Validation.Errors);
 
 			var sucesso = await _mediator.Send(createCategoryCommand, cancellationToken)
 				.ConfigureAwait(false);
@@ -59,7 +60,7 @@ namespace EstoqueApi.Controllers
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		public async Task<IActionResult> GetAllCategories(CancellationToken cancellationToken)
 		{
-			var categorias = await _mediator.Send(new GetAllCategoriesQuery(), cancellationToken)
+			var categorias = await _mediator.Send(new GetAllCategoryQuery(), cancellationToken)
 				.ConfigureAwait(false);
 
 			return categorias.Any() ? Ok(categorias) : NoContent();

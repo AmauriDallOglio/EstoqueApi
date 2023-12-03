@@ -26,7 +26,7 @@ namespace EstoqueApi.Aplicacao.Negocio
             var estoque = new Estoque
             {
                 //Produto = produto,
-                ProdutoId = produto.Id,
+                Produto_Id = produto.Id,
                 InfoCompra = new Qualitativo
                 {
                     PrecoUnidade = request.PrecoUnidade,

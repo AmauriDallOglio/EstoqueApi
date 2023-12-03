@@ -13,7 +13,14 @@ namespace EstoqueApi.Infra.Context
 		public DbSet<Categoria> Categorias { get; set; }
 		public DbSet<Estoque> Estoques { get; set; }
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.ApplyConfigurationsFromAssembly(typeof(MeuContext).Assembly);
 		}

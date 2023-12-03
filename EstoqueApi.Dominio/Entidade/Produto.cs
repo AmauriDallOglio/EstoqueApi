@@ -6,7 +6,7 @@
 		public string Descricao { get; set; }
 
 		public ICollection<Categoria> Categorias { get; set; }
-		public Estoque Estoque { get; set; } = default;
+		public Estoque Estoque { get; set; }
 
 	}
 }

@@ -3,7 +3,7 @@ using MediatR;
 
 namespace EstoqueApi.Aplicacao.Negocio
 {
-    public class ProdutoEstoqueQuery : IRequest<Estoque>
+    public class GetAllEstoqueQuery : IRequest<IEnumerable<Estoque>>
     {
         public int IdProduto { get; set; }
     }

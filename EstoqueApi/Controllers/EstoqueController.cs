@@ -6,7 +6,7 @@ namespace EstoqueApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EstoqueController : Controller
+    public class EstoqueController : ControllerBase
     {
         private readonly IMediator _mediator;
 
@@ -15,24 +15,23 @@ namespace EstoqueApi.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
-        [Route("{idProduto:int}")]
+
+
+        [HttpGet("ObterProdutoEstoque/{idProduto:int}")] // Rota para obter estoque de um produto por ID
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [HttpGet("ObterProdutoEstoque"), ActionName("ObterProdutoEstoque")]
         public async Task<IActionResult> GetProdutoEstoque([FromRoute] int idProduto, CancellationToken cancellationToken = default)
         {
-            var estoque = await _mediator.Send(new ProdutoEstoqueQuery
+            var estoque = await _mediator.Send(new GetAllEstoqueQuery
             {
                 IdProduto = idProduto
             }, cancellationToken).ConfigureAwait(false);
             return estoque == null ? NoContent() : Ok(estoque);
         }
 
-        [HttpPost]
+        [HttpPost("Inserir"), ActionName("Inserir")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [HttpGet("Create"), ActionName("Create")]
         public async Task<IActionResult> Create(EstoqueCommand estoqueCommand, CancellationToken cancellationToken = default)
         {
             var sucesso = await _mediator.Send(estoqueCommand, cancellationToken).ConfigureAwait(false);

@@ -1,5 +1,4 @@
 using EstoqueApi.Aplicacao.Negocio;
-using EstoqueApi.Aplicacao.Negocio.Categoria.Handler;
 using EstoqueApi.Dominio.Entidade;
 using EstoqueApi.Infra.Context;
 using EstoqueApi.Infra.Repositorio;
@@ -30,8 +29,18 @@ builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
  
 
 builder.Services.AddTransient<IRequestHandler<CreateCategoryCommand, bool>, CreateCategoryCommandHandler>();
-builder.Services.AddTransient<IRequestHandler<GetAllCategoriesQuery, IEnumerable<Categoria>>, GetAllCategoryQueryHandler>();
+builder.Services.AddTransient<IRequestHandler<GetAllCategoryQuery, IEnumerable<Categoria>>, GetAllCategoryQueryHandler>();
 builder.Services.AddTransient<IRequestHandler<GetAllProductQuery, IEnumerable<Produto>>, GetAllProductQueryHandler>();
+builder.Services.AddTransient<IRequestHandler<DeleteCategoryCommand, bool>, DeleteCategoryCommandHandler>();
+builder.Services.AddTransient<IRequestHandler<UpdateCategoryCommand, bool>, UpdateCategoryCommandHandler>();
+
+builder.Services.AddTransient<IRequestHandler<CreateProductCommand, bool>, CreateProductHandler>();
+
+
+builder.Services.AddTransient<IRequestHandler<EstoqueCommand, bool>, EstoqueCommandHandler>();
+
+builder.Services.AddTransient<IRequestHandler<GetAllEstoqueQuery, IEnumerable<Estoque>>, GetAllEstoqueQueryHandler>();
+
 
 
 
