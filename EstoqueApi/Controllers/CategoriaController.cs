@@ -16,14 +16,13 @@ namespace EstoqueApi.Controllers
 		}
 
 
-        [HttpPost("Inserir"), ActionName("Inserir")]
+        [HttpPost("Create"), ActionName("Create")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Create(CreateCategoryCommand createCategoryCommand,
-				   CancellationToken cancellationToken)
+        public async Task<IActionResult> Create(CreateCategoryCommand createCategoryCommand, CancellationToken cancellationToken)
 		{
-			//if (createCategoryCommand.Validation.Errors != null)
-			//	return BadRequest(createCategoryCommand.Validation.Errors);
+			if (createCategoryCommand.Validation.Errors != null)
+				return BadRequest(createCategoryCommand.Validation.Errors);
 
 			var sucesso = await _mediator.Send(createCategoryCommand, cancellationToken)
 				.ConfigureAwait(false);
@@ -34,8 +33,7 @@ namespace EstoqueApi.Controllers
 		[HttpPut]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<IActionResult> Update(UpdateCategoryCommand updateCategoryCommand,
-					CancellationToken cancellationToken)
+		public async Task<IActionResult> Update(UpdateCategoryCommand updateCategoryCommand, CancellationToken cancellationToken)
 		{
 			var sucesso = await _mediator.Send(updateCategoryCommand, cancellationToken)
 				.ConfigureAwait(false);
@@ -46,8 +44,7 @@ namespace EstoqueApi.Controllers
 		[HttpDelete]
         [ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<IActionResult> Delete(DeleteCategoryCommand deleteCategoryCommand,
-			CancellationToken cancellationToken)
+		public async Task<IActionResult> Delete(DeleteCategoryCommand deleteCategoryCommand, CancellationToken cancellationToken)
 		{
 			var sucesso = await _mediator.Send(deleteCategoryCommand, cancellationToken)
 				.ConfigureAwait(false);

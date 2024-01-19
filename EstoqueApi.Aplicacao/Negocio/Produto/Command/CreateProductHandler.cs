@@ -7,10 +7,9 @@ namespace EstoqueApi.Aplicacao.Negocio
     public class CreateProductHandler : IRequestHandler<CreateProductCommand, bool>
     {
         private readonly IRepositorioGenerico<Produto> _produtoRepository;
-        private readonly IRepositorioGenerico<Dominio.Entidade.Categoria> _categoiaRepository;
+        private readonly IRepositorioGenerico<Categoria> _categoiaRepository;
 
-        public CreateProductHandler(IRepositorioGenerico<Dominio.Entidade.Produto> produtoRepository,
-            IRepositorioGenerico<Dominio.Entidade.Categoria> categoiaRepository)
+        public CreateProductHandler(IRepositorioGenerico<Produto> produtoRepository,  IRepositorioGenerico<Categoria> categoiaRepository)
         {
             _produtoRepository = produtoRepository;
             _categoiaRepository = categoiaRepository;
@@ -18,12 +17,8 @@ namespace EstoqueApi.Aplicacao.Negocio
 
         public async Task<bool> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-
-            var categorias = _categoiaRepository.GetAll()
-                .Where(x => request.IdCategorias.Contains(x.Id)).ToList();
-
-
-            var produto = new Dominio.Entidade.Produto
+            var categorias = _categoiaRepository.GetAll().Where(x => request.IdCategorias.Contains(x.Id)).ToList();
+            var produto = new Produto
             {
                 Descricao = request.Descricao,
                 Categorias = categorias

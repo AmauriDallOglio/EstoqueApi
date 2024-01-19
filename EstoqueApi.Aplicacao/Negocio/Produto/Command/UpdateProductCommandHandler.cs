@@ -6,12 +6,12 @@ namespace EstoqueApi.Aplicacao.Negocio
     public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, bool>
     {
         private readonly IRepositorioGenerico<Dominio.Entidade.Produto> _genericRepository;
-        private readonly IRepositorioGenerico<Dominio.Entidade.Categoria> _categoiaRepository;
+        private readonly IRepositorioGenerico<Dominio.Entidade.Categoria> _categoriaRepository;
 
-        public UpdateProductCommandHandler(IRepositorioGenerico<Dominio.Entidade.Produto> genericRepository, IRepositorioGenerico<Dominio.Entidade.Categoria> categoiaRepository)
+        public UpdateProductCommandHandler(IRepositorioGenerico<Dominio.Entidade.Produto> genericRepository, IRepositorioGenerico<Dominio.Entidade.Categoria> categoriaRepository)
         {
             _genericRepository = genericRepository;
-            _categoiaRepository = categoiaRepository;
+            _categoriaRepository = categoriaRepository;
         }
 
         public async Task<bool> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
@@ -26,7 +26,7 @@ namespace EstoqueApi.Aplicacao.Negocio
             produto.Descricao = request.Descricao;
             if (request.IdCategorias.Any())
             {
-                var categorias = _categoiaRepository.GetAll().Where(x => request.IdCategorias.Contains(x.Id)).ToList();
+                var categorias = _categoriaRepository.GetAll().Where(x => request.IdCategorias.Contains(x.Id)).ToList();
                 produto.Categorias = categorias;
             }
 

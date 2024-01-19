@@ -14,8 +14,8 @@ namespace EstoqueApi.Aplicacao.Negocio
 
         public async Task<bool> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
-            //if (request.Validation.ErrorMessage != null)
-            //	return false;
+            if (request.Validation.Errors.Count > 0)
+                return false;
 
             var categoria = new Dominio.Entidade.Categoria
             {

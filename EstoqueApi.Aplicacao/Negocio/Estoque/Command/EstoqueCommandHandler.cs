@@ -9,9 +9,7 @@ namespace EstoqueApi.Aplicacao.Negocio
         private readonly IRepositorioGenerico<Estoque> _genericRepository;
         private readonly IRepositorioGenerico<Produto> _produtoRepository;
 
-        public EstoqueCommandHandler(
-            IRepositorioGenerico<Estoque> genericRepository,
-            IRepositorioGenerico<Produto> produtoRepository)
+        public EstoqueCommandHandler(IRepositorioGenerico<Estoque> genericRepository, IRepositorioGenerico<Produto> produtoRepository)
         {
             _genericRepository = genericRepository;
             _produtoRepository = produtoRepository;
@@ -20,12 +18,11 @@ namespace EstoqueApi.Aplicacao.Negocio
 
         public async Task<bool> Handle(EstoqueCommand request, CancellationToken cancellationToken)
         {
-            var produto = await _produtoRepository.GetByKeysAsync(cancellationToken, request.IdProduto)
-                ?? throw new ArgumentException("Id do produto inválido!");
+            var produto = await _produtoRepository.GetByKeysAsync(cancellationToken, request.IdProduto) ?? throw new ArgumentException("Id do produto inválido!");
 
             var estoque = new Estoque
             {
-                //Produto = produto,
+                Produto = produto,
                 Produto_Id = produto.Id,
                 InfoCompra = new Qualitativo
                 {
